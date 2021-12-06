@@ -1,66 +1,48 @@
 // https://leetcode.com/problems/maximum-subarray/
 
 void main(){
-  
-  // print(sum([-2,1,-3,4,-1,2,1,-5,4]));
-  // [4, -1, 2, 1] = 6
-  // print(sum([1])); // 1
-  // print(sum([5,4,-1,7,8])); // 23
-  
-  //[-1, -4, 0, -1, 1, 2, -3, 1]
-  // print(sum1([-2,1,-3,4,-1,2,1,-5,4]));
-  
-  sum2([1,2,3]);
+
+  sum1([1,2,3,4]); 
+  //   maximum subarray: index 0 ~ 3
+  //   sum: 10
+  sum1([-2,1,-3,4,-1,2,1,-5,4]);
+  // maximum subarray: index 3 ~ 6
+  // sum: 6
+  sum1([1]);
+//   maximum subarray: index 0
+//   sum: 1
+  sum1([5,4,-1,7,8]);
+//   maximum subarray: index 0 ~ 4
+//   sum: 23
 }
 
-void func(List<int> list1){
-  for (int t=0; t < intlist.length -1; t++) {
-    int a = intlist[t];
-    a += intlist[t+1];
-    list1.add(a);
-  }
- }
-
-int? sum2(List<int> intlist) {
+class IndexSumMap {
+  String indexRange;
+  int sum;
   
-  for (int k=0; k < intlist.length-1; k++) {
-    for (int j=1; j < intlist.length-1; j++){
-      int b = intlist[j];
-      b += intlist[j + 1];
-      list1.add(b);
-    }
-  }
-  
+  IndexSumMap({required this.indexRange, required this.sum});
 }
 
-int? sum(List<int> intlist) {
-  int a = intlist[0];
-  List<int> l = [];
-  for (int j=1; j < intlist.length; j++) {
-    a += intlist[j];
-    l.add(a);
+void sum1(List<int> intlist) {
+
+  List<IndexSumMap> ll = [];
+  if (intlist.length == 1) {
+    print("maximum subarray: index 0");
+    print("sum: ${intlist[0]}");
+    return;
   }
-  l.sort((a,b) => a.compareTo(b));
-  print(l);
-  
-  int b = intlist[1];
-  for (int i=2; i < intlist.length; i++) {
-    b += intlist[i];
-    l.add(b);
+  for (int j=0; j < intlist.length-1; j++) {
+    intlist.getRange(j, intlist.length).reduce((v, e) {
+      int sum = v + e;
+      int index = intlist.indexWhere((int i) => i == e, j);
+      ll.add(IndexSumMap(indexRange: "index $j ~ $index", sum: sum));
+      return v + e;
+    });
   }
-  print(l);
   
+  ll.sort((IndexSumMap a, IndexSumMap b) => a.sum.compareTo(b.sum));
+  print("maximum subarray: ${ll[ll.length-1].indexRange}");
+  print("sum: ${ll[ll.length-1].sum}");
+   
 }
 
-int? sum1(List<int> intlist) {
-  
-  int a = intlist.map((int i) => i).reduce((value, element) => value + element);
-  print(a);
-  
-  List<List<int>> ll = [];
-  for (int i=0; i < intlist.length -1; i++) {
-    List<int> l = [intlist[i], intlist[i+1]];
-    
-  }
- 
-}
