@@ -1,0 +1,23 @@
+// https://leetcode.com/problems/add-binary/
+
+void main(){
+
+  binarySum("11", "1"); // "100"
+  // binarySum("1010", "1011"); // "10101"
+ 
+}
+
+String? binarySum(String a, String b){
+  int c = binaryToDecimal(a) + binaryToDecimal(b);
+  
+ 
+  2.modPow()
+}
+
+int binaryToDecimal(String a){
+  int total = 0;
+  for (int i=0; i < a.length; i++) {
+    total = 2*total + int.parse(a[i]);
+  }
+  return total;
+}
