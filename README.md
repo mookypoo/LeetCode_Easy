@@ -1,3 +1,3 @@
 # LeetCode_Easy
 
-LeetCode - solutions for easy difficulty using Dart
+Dart Solutions for LeetCode Questions (Easy)
